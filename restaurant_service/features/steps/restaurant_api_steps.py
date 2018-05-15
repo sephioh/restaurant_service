@@ -1,6 +1,27 @@
-from behave import given
+from datetime import time
+
+from behave import given, when, then
+from model_mommy import mommy
+
+from restaurants.models import Restaurant
 
 
-@given('we have a restaurant')
+@given('there is a restaurant')
 def step_impl(context):
-    raise NotImplementedError
+    mommy.make(
+        Restaurant,
+        name="The Incredible Restaurant",
+        opens_at=time(hour=10),
+        closes_at=time(hour=22)
+    )
+
+
+@when('we make a HTTP GET request to {path}')
+def step_impl(context, path):
+    context.response = context.test.client.get(path)
+
+
+@then('this restaurant should be on the response')
+def step_impl(context):
+    [restaurant] = Restaurant.objects.all()
+    context.test.assertContains(context.response, restaurant.name)
