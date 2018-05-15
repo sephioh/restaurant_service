@@ -6,4 +6,5 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    command: bash -c "pipenv run python restaurant_service/manage.py migrate && pipenv run python restaurant_service/manage.py runserver 0:8000"
+    working_dir: /app/restaurant_service
+    command: bash -c "pipenv run python manage.py migrate && pipenv run python manage.py runserver 0:8000"

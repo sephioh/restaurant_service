@@ -11,4 +11,4 @@ Start the application (inside a docker container) with this command:
 docker-compose up
 ```
 
-This will start the project at http://localhost:8000.
+This will start the application at http://localhost:8000.
