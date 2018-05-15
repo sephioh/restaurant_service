@@ -1,2 +1,5 @@
 # ignores PyCharm folder
 .idea/
+
+# ignores sqlite3 files
+*.sqlite3
