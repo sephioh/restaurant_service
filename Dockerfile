@@ -7,4 +7,4 @@ WORKDIR /app
 COPY Pipfile /app/
 COPY Pipfile.lock /app/
 
-RUN pipenv install
+RUN pipenv install --dev # TODO: create Dockerfile for testing purposes
