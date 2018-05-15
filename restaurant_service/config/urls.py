@@ -18,5 +18,6 @@ from django.conf.urls import url
 from restaurants import views
 
 urlpatterns = [
-    url(r'^api/restaurants/$', views.RestaurantListView.as_view()),
+    url(r'^api/restaurants/$', views.RestaurantListCreateAPIView.as_view()),
+    url(r'^api/restaurant/(?P<pk>[0-9]+)$', views.RestaurantRetrieveAPIView.as_view()),
 ]

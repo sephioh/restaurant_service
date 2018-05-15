@@ -1,10 +1,15 @@
 Feature: Restaurants API resource
 
-  Scenario: GET /restaurants
-    Given there is a restaurant
+  Scenario: Retrieve all restaurants
+    Given there is a restaurant called The Incredible Restaurant
     When we make a HTTP GET request to /api/restaurants/
     Then this restaurant should be listed on the response
 
-  Scenario: POST /restaurants
+  Scenario: Retrieve single restaurant
+    Given there is a restaurant with a 10000 id
+    When we make a HTTP GET request to /api/restaurant/10000
+    Then this restaurant should be on the response
+
+  Scenario: Create a restaurant
     When we make a HTTP POST request to /api/restaurants/
     Then this restaurant should be created

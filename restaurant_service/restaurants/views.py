@@ -1,9 +1,14 @@
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 
 from restaurants.models import Restaurant
 from restaurants.serializers import RestaurantSerializer
 
 
-class RestaurantListView(ListCreateAPIView):
+class RestaurantListCreateAPIView(ListCreateAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+
+
+class RestaurantRetrieveAPIView(RetrieveAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
