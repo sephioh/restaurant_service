@@ -21,7 +21,8 @@ def step_impl(context, path):
     context.response = context.test.client.get(path)
 
 
-@then('this restaurant should be on the response')
+@then('this restaurant should be listed on the response')
 def step_impl(context):
     [restaurant] = Restaurant.objects.all()
-    context.test.assertContains(context.response, restaurant.name)
+    context.test.assertEqual(context.response.data[0]['id'], restaurant.id)
+    context.test.assertEqual(context.response.data[0]['name'], restaurant.name)

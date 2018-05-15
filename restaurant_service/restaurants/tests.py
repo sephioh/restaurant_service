@@ -2,6 +2,7 @@ from datetime import time
 
 from django.db import IntegrityError
 from django.test import TestCase
+from rest_framework.status import HTTP_200_OK
 
 from restaurants.models import Restaurant
 
@@ -36,3 +37,9 @@ class TestRestaurantModel(TestCase):
                 name="The Incredible Restaurant",
                 opens_at=time(hour=10),
             )
+
+
+class TestRestaurantListView(TestCase):
+    def test_returns_200_ok(self):
+        response = self.client.get('/api/restaurants/')
+        self.assertEqual(HTTP_200_OK, response.status_code)
