@@ -13,3 +13,8 @@ Feature: Restaurants API resource
   Scenario: Create a restaurant
     When we make a HTTP POST request to /api/restaurants/
     Then this restaurant should be created
+
+  Scenario: Delete a restaurant
+    Given there is a restaurant with a 10000 id
+    When we make a HTTP DELETE request to /api/restaurant/10000
+    Then the restaurant with a id 10000 should be deleted

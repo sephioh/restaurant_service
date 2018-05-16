@@ -18,7 +18,7 @@ def step_impl(context, name):
 
 @given('there is a restaurant with a {restaurant_id} id')
 def step_impl(context, restaurant_id):
-    restaurant = mommy.make(
+    mommy.make(
         Restaurant,
         id=restaurant_id,
         name="Some restaurant",
@@ -32,19 +32,26 @@ def step_impl(context, path):
     context.response = context.test.client.get(path=path)
 
 
-@when('we make a HTTP POST request to /api/restaurants/')
-def step_impl(context):
+@when('we make a HTTP POST request to {path}')
+def step_impl(context, path):
     restaurant_name = 'A New Restaurant'
     restaurant_opens_at = '12:00:00'
     restaurant_closes_at = '23:00:00'
 
     context.response = context.test.client.post(
-        path='/api/restaurants/',
+        path=path,
         data={
             'name': restaurant_name,
             'opens_at': restaurant_opens_at,
             'closes_at': restaurant_closes_at,
         }
+    )
+
+
+@when('we make a HTTP DELETE request to {path}')
+def step_impl(context, path):
+    context.response = context.test.client.delete(
+        path=path,
     )
 
 
@@ -70,3 +77,10 @@ def step_impl(context):
 
     context.test.assertEqual(context.response.data['id'], restaurant.id)
     context.test.assertEqual(context.response.data['name'], restaurant.name)
+
+
+@then('the restaurant with a id {restaurant_id} should be deleted')
+def step_impl(context, restaurant_id):
+    restaurant_exists = Restaurant.objects.filter(id=restaurant_id).exists()
+
+    context.test.assertFalse(restaurant_exists, "Restaurant should be deleted but still exists!")

@@ -3,7 +3,8 @@ from datetime import time
 from django.db import IntegrityError
 from django.test import TestCase
 from model_mommy import mommy
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, \
+    HTTP_404_NOT_FOUND
 
 from restaurants.models import Restaurant
 
@@ -55,8 +56,8 @@ class TestRestaurantListCreateAPIView(TestCase):
         self.assertEqual(HTTP_201_CREATED, response.status_code)
 
 
-class TestRestaurantRetrieveAPIView(TestCase):
-    def test_returns_200_ok(self):
+class TestRestaurantRetrieveDestroyAPIView(TestCase):
+    def test_retrieve_returns_200_ok(self):
         restaurant = mommy.make(
             Restaurant,
             name="The Incredible Restaurant",
@@ -66,3 +67,26 @@ class TestRestaurantRetrieveAPIView(TestCase):
 
         response = self.client.get('/api/restaurant/{0}'.format(restaurant.id))
         self.assertEqual(HTTP_200_OK, response.status_code)
+
+    def test_retrieve_non_existent_restaurant_returns_404_not_found(self):
+        non_existent_restaurant_id = 1111
+
+        response = self.client.get('/api/restaurant/{0}'.format(non_existent_restaurant_id))
+        self.assertEqual(HTTP_404_NOT_FOUND, response.status_code)
+
+    def test_delete_returns_204_no_content(self):
+        restaurant = mommy.make(
+            Restaurant,
+            name="The Incredible Restaurant",
+            opens_at=time(hour=10),
+            closes_at=time(hour=22)
+        )
+
+        response = self.client.delete('/api/restaurant/{0}'.format(restaurant.id))
+        self.assertEqual(HTTP_204_NO_CONTENT, response.status_code)
+
+    def test_delete_non_existent_restaurant_returns_404_not_found(self):
+        non_existent_restaurant_id = 1111
+        response = self.client.delete('/api/restaurant/{0}'.format(non_existent_restaurant_id))
+
+        self.assertEqual(HTTP_404_NOT_FOUND, response.status_code)

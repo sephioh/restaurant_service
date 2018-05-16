@@ -19,5 +19,5 @@ from restaurants import views
 
 urlpatterns = [
     url(r'^api/restaurants/$', views.RestaurantListCreateAPIView.as_view()),
-    url(r'^api/restaurant/(?P<pk>[0-9]+)$', views.RestaurantRetrieveAPIView.as_view()),
+    url(r'^api/restaurant/(?P<pk>[0-9]+)$', views.RestaurantRetrieveDestroyAPIView.as_view()),
 ]
