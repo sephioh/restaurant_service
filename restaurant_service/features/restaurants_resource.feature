@@ -18,3 +18,8 @@ Feature: Restaurants API resource
     Given there is a restaurant with a 10000 id
     When we make a HTTP DELETE request to /api/restaurant/10000
     Then the restaurant with a id 10000 should be deleted
+
+  Scenario: Updates a restaurant name
+    Given there is a The Awesome Restaurant restaurant with a 10000 id
+    When we make a HTTP PUT request to /api/restaurant/10000 changing the name to The Nice Restaurant
+    Then the restaurant with a id 10000 should have the name The Nice Restaurant
