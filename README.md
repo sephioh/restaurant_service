@@ -2,8 +2,8 @@
 An HTTP api service to manage restaurants.
 
 # Requirements
-* docker
-* docker-compose
+* [docker](https://www.docker.com/)
+* [docker-compose](https://docs.docker.com/compose/)
 * make
 
 # How to run
@@ -35,3 +35,4 @@ make unit_tests
 * [docker](https://www.docker.com/)
 * [docker-compose](https://docs.docker.com/compose/)
 * [behave-django](https://behave-django.readthedocs.io/en/stable/)
+* [Django REST swagger](https://django-rest-swagger.readthedocs.io/en/latest/)
