@@ -87,6 +87,17 @@ def step_impl(context, path, restaurant_new_name):
     )
 
 
+@when('we make a HTTP PATCH request to {path} changing the name to {restaurant_new_name}')
+def step_impl(context, path, restaurant_new_name):
+    data = {'name': restaurant_new_name}
+
+    context.response = context.test.client.patch(
+        path=path,
+        data=json.dumps(data),
+        content_type='application/json'
+    )
+
+
 @then('this restaurant should be listed on the response')
 def step_impl(context):
     [restaurant] = Restaurant.objects.all()

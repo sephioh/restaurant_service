@@ -101,3 +101,23 @@ class TestRestaurantRetrieveUpdateDestroyAPIViewAPIView(TestCase):
         )
 
         self.assertEqual(status.HTTP_400_BAD_REQUEST, response.status_code)
+
+    def test_patch_returns_200_ok(self):
+        restaurant = mommy.make(
+            Restaurant,
+            name="The Incredible Restaurant",
+            opens_at=time(hour=10),
+            closes_at=time(hour=22)
+        )
+
+        data = {
+            'opens_at': '09:00',
+        }
+
+        response = self.client.patch(
+            path='/api/restaurant/{0}'.format(restaurant.id),
+            data=json.dumps(data),
+            content_type='application/json'
+        )
+
+        self.assertEqual(status.HTTP_200_OK, response.status_code)
