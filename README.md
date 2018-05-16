@@ -14,6 +14,11 @@ make run
 
 This will start the application at http://localhost:8000.
 
+# API Docs
+There are a live documentation for this service using swagger.
+
+In order to access it, make sure the application is running and open the [API documentation page](http://localhost:8000).
+
 # Tests
 
 ## Acceptance Tests
