@@ -12,3 +12,6 @@ unit_tests:
 
 lint:
 	docker-compose run app pipenv run flake8
+
+coverage:
+	docker-compose run app pipenv run coverage run --source='.' manage.py test restaurants && pipenv run coverage report

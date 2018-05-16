@@ -34,6 +34,12 @@ Run code quality ensurance tests using this command:
 make lint
 ```
 
+## Test Coverage
+Run test coverage using this command:
+```
+make coverage
+```
+
 ## Built with
 * [Python](https://www.python.org/)
 * [Django](https://www.djangoproject.com/)
@@ -42,3 +48,5 @@ make lint
 * [docker-compose](https://docs.docker.com/compose/)
 * [behave-django](https://behave-django.readthedocs.io/en/stable/)
 * [Django REST swagger](https://django-rest-swagger.readthedocs.io/en/latest/)
+* [flake8](http://flake8.pycqa.org/en/latest/)
+* [coverage](https://coverage.readthedocs.io/en/coverage-4.5.1/)

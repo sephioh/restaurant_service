@@ -12,6 +12,7 @@ django-rest-swagger = "*"
 "flake8" = "*"
 behave-django = "*"
 model-mommy = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.6"
