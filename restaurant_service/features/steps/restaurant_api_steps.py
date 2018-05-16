@@ -18,7 +18,7 @@ def step_impl(context, name):
     )
 
 
-@given('there is a restaurant with a {restaurant_id} id')
+@given('there is a restaurant with a {restaurant_id} id')  # noqa: F811
 def step_impl(context, restaurant_id):
     mommy.make(
         Restaurant,
@@ -29,7 +29,7 @@ def step_impl(context, restaurant_id):
     )
 
 
-@given('there is a {restaurant_name} restaurant with a {restaurant_id} id')
+@given('there is a {restaurant_name} restaurant with a {restaurant_id} id')  # noqa: F811
 def step_impl(context, restaurant_name, restaurant_id):
     mommy.make(
         Restaurant,
@@ -40,12 +40,12 @@ def step_impl(context, restaurant_name, restaurant_id):
     )
 
 
-@when('we make a HTTP GET request to {path}')
+@when('we make a HTTP GET request to {path}')  # noqa: F811
 def step_impl(context, path):
     context.response = context.test.client.get(path=path)
 
 
-@when('we make a HTTP POST request to {path}')
+@when('we make a HTTP POST request to {path}')  # noqa: F811
 def step_impl(context, path):
     restaurant_name = 'A New Restaurant'
     restaurant_opens_at = '12:00:00'
@@ -61,14 +61,14 @@ def step_impl(context, path):
     )
 
 
-@when('we make a HTTP DELETE request to {path}')
+@when('we make a HTTP DELETE request to {path}')  # noqa: F811
 def step_impl(context, path):
     context.response = context.test.client.delete(
         path=path,
     )
 
 
-@when('we make a HTTP PUT request to {path} changing the name to {restaurant_new_name}')
+@when('we make a HTTP PUT request to {path} changing the name to {restaurant_new_name}')  # noqa: F811
 def step_impl(context, path, restaurant_new_name):
     restaurant_id_regex_patttern = "/api/restaurant/(\d+)"
 
@@ -87,7 +87,7 @@ def step_impl(context, path, restaurant_new_name):
     )
 
 
-@when('we make a HTTP PATCH request to {path} changing the name to {restaurant_new_name}')
+@when('we make a HTTP PATCH request to {path} changing the name to {restaurant_new_name}')  # noqa: F811
 def step_impl(context, path, restaurant_new_name):
     data = {'name': restaurant_new_name}
 
@@ -98,7 +98,7 @@ def step_impl(context, path, restaurant_new_name):
     )
 
 
-@then('this restaurant should be listed on the response')
+@then('this restaurant should be listed on the response')  # noqa: F811
 def step_impl(context):
     [restaurant] = Restaurant.objects.all()
 
@@ -106,7 +106,7 @@ def step_impl(context):
     context.test.assertEqual(context.response.data[0]['name'], restaurant.name)
 
 
-@then('this restaurant should be on the response')
+@then('this restaurant should be on the response')  # noqa: F811
 def step_impl(context):
     [restaurant] = Restaurant.objects.all()
 
@@ -114,7 +114,7 @@ def step_impl(context):
     context.test.assertEqual(context.response.data['name'], restaurant.name)
 
 
-@then('this restaurant should be created')
+@then('this restaurant should be created')  # noqa: F811
 def step_impl(context):
     [restaurant] = Restaurant.objects.all()
 
@@ -122,14 +122,14 @@ def step_impl(context):
     context.test.assertEqual(context.response.data['name'], restaurant.name)
 
 
-@then('the restaurant with a id {restaurant_id} should be deleted')
+@then('the restaurant with a id {restaurant_id} should be deleted')  # noqa: F811
 def step_impl(context, restaurant_id):
     restaurant_exists = Restaurant.objects.filter(id=restaurant_id).exists()
 
-    context.test.assertFalse(restaurant_exists, "Restaurant should be deleted but still exists!")
+    context.test.assertFalse(restaurant_exists, "Restaurant should be deleted but still exists!")  # noqa: F811
 
 
-@then('the restaurant with a id {restaurant_id} should have the name {restaurant_name}')
+@then('the restaurant with a id {restaurant_id} should have the name {restaurant_name}')  # noqa: F811
 def step_impl(context, restaurant_id, restaurant_name):
     restaurant = Restaurant.objects.get(id=restaurant_id)
 

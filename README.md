@@ -28,6 +28,12 @@ Run unit tests with this command:
 make unit_tests
 ```
 
+## Lint
+Run code quality ensurance tests using this command:
+```
+make lint
+```
+
 ## Built with
 * [Python](https://www.python.org/)
 * [Django](https://www.djangoproject.com/)

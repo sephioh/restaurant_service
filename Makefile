@@ -10,3 +10,5 @@ acceptance_tests:
 unit_tests:
 	docker-compose run app pipenv run python manage.py test
 
+lint:
+	docker-compose run app pipenv run flake8

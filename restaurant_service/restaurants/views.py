@@ -1,5 +1,4 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView, \
-    RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from restaurants.models import Restaurant
 from restaurants.serializers import RestaurantSerializer
