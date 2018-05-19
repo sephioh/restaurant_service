@@ -5,13 +5,13 @@ stop:
 	docker-compose stop
 
 acceptance_tests:
-	docker-compose run app pipenv run python manage.py behave
+	docker-compose run app python3 manage.py behave
 
 unit_tests:
-	docker-compose run app pipenv run python manage.py test
+	docker-compose run app python3 manage.py test
 
 lint:
-	docker-compose run app pipenv run flake8
+	docker-compose run app flake8
 
 coverage:
-	docker-compose run app pipenv run coverage run --source='.' manage.py test restaurants && pipenv run coverage report
+	docker-compose run app coverage report

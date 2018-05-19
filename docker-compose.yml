@@ -7,4 +7,4 @@ services:
     volumes:
       - .:/app
     working_dir: /app/restaurant_service
-    command: bash -c "pipenv run python manage.py migrate && pipenv run python manage.py runserver 0:8000"
+    command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0:8000"
