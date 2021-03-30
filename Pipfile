@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==3.0.4"
+django = "==3.0.12"
 djangorestframework = "==3.11.2"
 django-rest-swagger = "*"
 
